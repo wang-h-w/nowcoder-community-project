@@ -14,6 +14,15 @@ spring:
     url: jdbc:mysql://localhost:3306/community
     username: root
     password: root
+  # MailProperties
+  mail:
+    host: smtp.163.com
+    port: 465
+    username: wang_learning@163.com
+    password: WMWLEXMHQTWXYPND
+    protocol: smtps
+    properties:
+      mail.smtp.ssl.enable: true
 
 # MyBatisProperties
 mybatis:
@@ -22,3 +31,8 @@ mybatis:
   configuration:
     use-generated-keys: true
     map-underscore-to-camel-case: true
+
+# CommunityProperties
+community:
+  path:
+    domain: http://localhost:8080
