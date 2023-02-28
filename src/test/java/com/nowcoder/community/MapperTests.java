@@ -1,8 +1,10 @@
 package com.nowcoder.community;
 
 import com.nowcoder.community.entity.DiscussPost;
+import com.nowcoder.community.entity.LoginTicket;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.mapper.DiscussPostMapper;
+import com.nowcoder.community.mapper.LoginTicketMapper;
 import com.nowcoder.community.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class MapperTests {
     private UserMapper userMapper;
     @Autowired
     private DiscussPostMapper discussPostMapper;
+    @Autowired
+    private LoginTicketMapper loginTicketMapper;
 
     @Test
     public void testSelect() {
@@ -58,5 +62,20 @@ public class MapperTests {
         List<DiscussPost> discussPosts = discussPostMapper.selectDiscussPosts(111, 0, 10);
         for (DiscussPost discussPost : discussPosts) System.out.println(discussPost);
         System.out.println(discussPostMapper.selectDiscussPostRows(111));
+    }
+
+    @Test
+    public void testLoginTicket() {
+        LoginTicket loginTicket = new LoginTicket();
+        loginTicket.setUserId(123);
+        loginTicket.setTicket("abc");
+        loginTicket.setStatus(0);
+        loginTicket.setExpired(new Date(System.currentTimeMillis() + 1000 * 60 * 10));
+        int cnt = loginTicketMapper.insertLoginTicket(loginTicket);
+        System.out.println(cnt == 1 ? "Success." : "Fail.");
+        System.out.println(loginTicketMapper.selectByTicket("abc"));
+        cnt = loginTicketMapper.updateStatus("abc", 1);
+        System.out.println(cnt == 1 ? "Success." : "Fail.");
+        System.out.println(loginTicketMapper.selectByTicket("abc"));
     }
 }
