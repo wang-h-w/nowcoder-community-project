@@ -105,4 +105,16 @@ public class UserController {
             }
         }
     }
+
+    @RequestMapping(path = "/password", method = RequestMethod.POST)
+    public String changePassword(Model model, String oldPassword, String newPassword) {
+        User user = hostHolder.getUser();
+        oldPassword = CommunityUtil.md5(oldPassword + user.getSalt());
+        if (oldPassword == null || !oldPassword.equals(user.getPassword())) {
+            model.addAttribute("oldPasswordMsg", "原始密码输入错误！");
+            return "/site/setting";
+        }
+        userService.updatePassword(user.getEmail(), newPassword);
+        return "redirect:/logout";
+    }
 }

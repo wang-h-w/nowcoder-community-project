@@ -24,4 +24,26 @@ public interface DiscussPostMapper {
      * @return Number of rows
      */
     int selectDiscussPostRows(@Param("userId") int userId);
+
+    /**
+     * 新增帖子到数据库中
+     * @param post New post
+     * @return 1-success; 0-fail
+     */
+    int insertDiscussPost(DiscussPost post);
+
+    /**
+     * 根据帖子的ID查询帖子
+     * @param id Post's id
+     * @return Post
+     */
+    DiscussPost selectDiscussPostById(int id);
+
+    /**
+     * 更新帖子的评论数量
+     * @param id Post's id
+     * @param commentCount New count of comment
+     * @return 1-success; 0-fail
+     */
+    int updateCommentCount(int id, int commentCount);
 }

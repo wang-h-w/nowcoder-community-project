@@ -22,6 +22,13 @@ public interface UserService {
     User findUserByEmail(String email);
 
     /**
+     * 业务：根据用户名获得用户实例
+     * @param name User's name
+     * @return User instance
+     */
+    User findUserByName(String name);
+
+    /**
      * 业务：注册用户
      * @param user User waited to be registered
      * @return Result info

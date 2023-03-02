@@ -20,4 +20,24 @@ public interface DiscussPostService {
      * @return Number of rows
      */
     int findDiscussPostRows(int userId);
+
+    /**
+     * 业务：新增帖子
+     * @param post New post
+     */
+    void addDiscussPost(DiscussPost post);
+
+    /**
+     * 根据ID查询帖子
+     * @param id Post's id
+     * @return Post
+     */
+    DiscussPost findDiscussPostById(int id);
+
+    /**
+     * 业务：更新帖子的评论数量
+     * @param id Post's id
+     * @param commentCount New count of comment
+     */
+    void updateCommentCount(int id, int commentCount);
 }
