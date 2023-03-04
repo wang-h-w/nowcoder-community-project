@@ -23,6 +23,13 @@ spring:
     protocol: smtps
     properties:
       mail.smtp.ssl.enable: true
+  # RedisProperties
+  data:
+    redis:
+      database: 11
+      host: 10.211.55.4
+      port: 6379
+      password: 999
 
 # MyBatisProperties
 mybatis:

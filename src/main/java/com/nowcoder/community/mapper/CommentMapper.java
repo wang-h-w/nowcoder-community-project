@@ -32,4 +32,22 @@ public interface CommentMapper {
      * @return 1-success; 0-fail
      */
     int insertComment(Comment comment);
+
+    /**
+     * 查询某个用户为某类型实体发出的评论
+     * @param userId User's id
+     * @param entityType Entity type
+     * @param offset Start row
+     * @param limit Number of comments in a page
+     * @return List of comments
+     */
+    List<Comment> selectCommentsByUser(int userId, int entityType, int offset, int limit);
+
+    /**
+     * 查询某个用户为某类型实体发出的评论数量
+     * @param userId User's id
+     * @param entityType Entity type
+     * @return Number of comments
+     */
+    int selectCountByUser(int userId, int entityType);
 }

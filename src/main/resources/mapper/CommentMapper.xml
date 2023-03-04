@@ -15,7 +15,7 @@
         select <include refid="selectFields"/>
         from comment
         where status = 0 and entity_type = #{entityType} and entity_id = #{entityId}
-        order by create_time
+        order by create_time desc
         limit #{offset}, #{limit}
     </select>
 
@@ -29,4 +29,18 @@
         insert into comment(<include refid="insertFields"/>)
         values (#{userId}, #{entityType}, #{entityId}, #{targetId}, #{content}, #{status}, #{createTime})
     </insert>
+
+    <select id="selectCommentsByUser" resultType="Comment">
+        select <include refid="selectFields"/>
+        from comment
+        where status = 0 and entity_type = #{entityType} and user_id = #{userId}
+        order by create_time desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectCountByUser" resultType="int">
+        select count(id)
+        from comment
+        where status = 0 and entity_type = #{entityType} and user_id = #{userId}
+    </select>
 </mapper>

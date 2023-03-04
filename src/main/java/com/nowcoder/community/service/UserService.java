@@ -69,7 +69,6 @@ public interface UserService {
      * 业务：更新用户头像
      * @param userId User's id
      * @param headerUrl New header url
-     * @return 1-success; 0-fail
      */
     void updateHeader(int userId, String headerUrl);
 

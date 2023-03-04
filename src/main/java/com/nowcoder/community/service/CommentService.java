@@ -25,8 +25,26 @@ public interface CommentService {
     int findCommentCount(int entityType, int entityId);
 
     /**
-     * 新增评论
+     * 业务：新增评论
      * @param comment New comment
      */
     void addComment(Comment comment);
+
+    /**
+     * 业务：查询某个用户为某类型实体发出的评论
+     * @param userId User's id
+     * @param entityType Entity type
+     * @param offset Start row
+     * @param limit Number of comments in a page
+     * @return List of comments
+     */
+    List<Comment> findCommentsByUser(int userId, int entityType, int offset, int limit);
+
+    /**
+     * 业务：查询某个用户为某类型实体发出的评论数量
+     * @param userId User's id
+     * @param entityType Entity type
+     * @return Number of comments
+     */
+    int findCountByUser(int userId, int entityType);
 }

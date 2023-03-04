@@ -41,4 +41,19 @@ public interface CommunityConstant {
      * 实体类型：评论
      */
     int ENTITY_TYPE_COMMENT = 2;
+
+    /**
+     * 实体类型：用户
+     */
+    int ENTITY_TYPE_USER = 3;
+
+    /**
+     * 登录界面验证码有效时长（秒）
+     */
+    int KAPTCHA_EXPIRED_SECOND = 60;
+
+    /**
+     * 用户缓存有效时长（秒）
+     */
+    int USER_CACHE_EXPIRED_SECOND = 3600;
 }

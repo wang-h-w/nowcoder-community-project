@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 // 采用注解的方式指定SQL语句
 @Mapper
+@Deprecated
 public interface LoginTicketMapper {
 
     /**
