@@ -50,4 +50,11 @@ public interface CommentMapper {
      * @return Number of comments
      */
     int selectCountByUser(int userId, int entityType);
+
+    /**
+     * 根据帖子的ID查询帖子
+     * @param id Comment's id
+     * @return Comment instance
+     */
+    Comment selectCommentById(int id);
 }

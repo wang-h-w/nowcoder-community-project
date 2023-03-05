@@ -30,6 +30,13 @@ spring:
       host: 10.211.55.4
       port: 6379
       password: 999
+  # KafkaProperties
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: community-consumer-group
+      enable-auto-commit: true
+      auto-commit-interval: 3000
 
 # MyBatisProperties
 mybatis:

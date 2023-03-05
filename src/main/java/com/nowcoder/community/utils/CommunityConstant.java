@@ -56,4 +56,24 @@ public interface CommunityConstant {
      * 用户缓存有效时长（秒）
      */
     int USER_CACHE_EXPIRED_SECOND = 3600;
+
+    /**
+     * Kafka主题：评论
+     */
+    String TOPIC_COMMENT = "comment";
+
+    /**
+     * Kafka主题：点赞
+     */
+    String TOPIC_LIKE = "like";
+
+    /**
+     * Kafka主题：关注
+     */
+    String TOPIC_FOLLOW = "follow";
+
+    /**
+     * 系统的用户ID
+     */
+    int SYSTEM_USER_ID = 1;
 }

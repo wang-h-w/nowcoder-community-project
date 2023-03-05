@@ -47,4 +47,11 @@ public interface CommentService {
      * @return Number of comments
      */
     int findCountByUser(int userId, int entityType);
+
+    /**
+     * 业务：根据帖子的ID查询帖子
+     * @param id Comment's id
+     * @return Comment instance
+     */
+    Comment findCommentById(int id);
 }
