@@ -1,13 +1,11 @@
 package com.nowcoder.community.controller;
 
-import com.nowcoder.community.annotation.LoginRequired;
 import com.nowcoder.community.entity.Comment;
 import com.nowcoder.community.entity.DiscussPost;
+import com.nowcoder.community.entity.Event;
 import com.nowcoder.community.entity.User;
-import com.nowcoder.community.service.CommentService;
-import com.nowcoder.community.service.DiscussPostService;
-import com.nowcoder.community.service.LikeService;
-import com.nowcoder.community.service.UserService;
+import com.nowcoder.community.event.EventProducer;
+import com.nowcoder.community.service.*;
 import com.nowcoder.community.utils.CommunityConstant;
 import com.nowcoder.community.utils.CommunityUtil;
 import com.nowcoder.community.utils.HostHolder;
@@ -35,6 +33,8 @@ public class DiscussPostController implements CommunityConstant {
     @Autowired
     private LikeService likeService;
     @Autowired
+    private EventProducer eventProducer;
+    @Autowired
     private HostHolder hostHolder;
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
@@ -49,6 +49,15 @@ public class DiscussPostController implements CommunityConstant {
         post.setContent(content);
         post.setCreateTime(new Date());
         discussPostService.addDiscussPost(post);
+
+        // 将新的帖子存入Elasticsearch中
+        // 异步实现：触发事件，存入Kafka队列
+        Event event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setUserId(user.getId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(post.getId());
+        eventProducer.fireEvent(event);
 
         return CommunityUtil.getJsonString(0, "发布成功！");
     }

@@ -5,6 +5,9 @@ server:
     context-path: /community
 
 spring:
+  # ElasticsearchProperties
+  elasticsearch:
+    uris: http://10.211.55.4:9200
   # ThymeleafProperties
   thymeleaf:
     cache: false
@@ -32,7 +35,7 @@ spring:
       password: 999
   # KafkaProperties
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: 10.211.55.4:9092
     consumer:
       group-id: community-consumer-group
       enable-auto-commit: true

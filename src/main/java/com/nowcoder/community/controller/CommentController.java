@@ -53,6 +53,18 @@ public class CommentController implements CommunityConstant {
         }
         eventProducer.fireEvent(event);
 
+        // 如果评论的是帖子，则还需更新帖子在Elasticsearch中的文档
+        // 异步实现：触发事件，存入Kafka队列
+        if (comment.getEntityType() == ENTITY_TYPE_POST) {
+
+            event = new Event()
+                .setTopic(TOPIC_PUBLISH)
+                .setUserId(comment.getUserId())
+                .setEntityType(ENTITY_TYPE_POST)
+                .setEntityId(discussPostId);
+            eventProducer.fireEvent(event);
+        }
+
         return "redirect:/discuss/detail/" + discussPostId;
     }
 }

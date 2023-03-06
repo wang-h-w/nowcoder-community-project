@@ -73,6 +73,11 @@ public interface CommunityConstant {
     String TOPIC_FOLLOW = "follow";
 
     /**
+     * Kafka主题：发帖
+     */
+    String TOPIC_PUBLISH = "publish";
+
+    /**
      * 系统的用户ID
      */
     int SYSTEM_USER_ID = 1;
