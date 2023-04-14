@@ -2,7 +2,9 @@ package com.nowcoder.community.service;
 
 import com.nowcoder.community.entity.LoginTicket;
 import com.nowcoder.community.entity.User;
+import org.springframework.security.core.GrantedAuthority;
 
+import java.util.Collection;
 import java.util.Map;
 
 public interface UserService {
@@ -85,4 +87,11 @@ public interface UserService {
      * @param password New password
      */
     void updatePassword(String email, String password);
+
+    /**
+     * 业务：获得某用户的权限
+     * @param userId User's id
+     * @return The collection of GrantedAuthority
+     */
+    Collection<? extends GrantedAuthority> getAuthorities(int userId);
 }

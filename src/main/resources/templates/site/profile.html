@@ -24,11 +24,11 @@
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{|/user/post/${user.id}|}"
-							   th:text="${loginUser.id == user.id ? '我的帖子' : 'TA的帖子'}">我的帖子</a>
+							   th:text="${loginUser.id == user.id ? '我的帖子' : 'TA的帖子'}" th:if="${loginUser != null}">我的帖子</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{|/user/reply/${user.id}|}"
-							   th:text="${loginUser.id == user.id ? '我的回复' : 'TA的回复'}">我的回复</a>
+							   th:text="${loginUser.id == user.id ? '我的回复' : 'TA的回复'}" th:if="${loginUser != null}">我的回复</a>
 						</li>
 					</ul>
 					<a th:href="@{|/user/profile/${user.id}|}" class="text-muted position-absolute rt-0">返回个人主页&gt;</a>

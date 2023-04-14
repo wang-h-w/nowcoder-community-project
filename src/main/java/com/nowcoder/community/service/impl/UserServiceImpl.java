@@ -12,14 +12,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import static com.nowcoder.community.utils.CommunityConstant.*;
@@ -169,7 +167,6 @@ public class UserServiceImpl implements UserService {
         redisTemplate.opsForValue().set(redisKey, loginTicket);
 
         map.put("ticket", loginTicket.getTicket());
-        System.out.println("登录凭证");
 
         return map;
     }
@@ -238,6 +235,26 @@ public class UserServiceImpl implements UserService {
         password = CommunityUtil.md5(password + user.getSalt());
         userMapper.updatePassword(user.getId(), password);
         clearCache(user.getId());
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities(int userId) {
+        User user = findUserById(userId);
+        List<GrantedAuthority> list = new ArrayList<>();
+        list.add(new GrantedAuthority() {
+            @Override
+            public String getAuthority() {
+                switch (user.getType()) {
+                    case 1:
+                        return AUTHORITY_ADMIN;
+                    case 2:
+                        return AUTHORITY_MODERATOR;
+                    default:
+                        return AUTHORITY_USER;
+                }
+            }
+        });
+        return list;
     }
 
     // Redis缓存：优先从缓存中取值

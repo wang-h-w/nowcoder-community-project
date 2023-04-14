@@ -22,9 +22,6 @@ public class ElasticsearchConfig {
         String hostName = splitHost[1].substring(2);
         int port = Integer.parseInt(splitHost[2]);
 
-        System.out.println(hostName);
-        System.out.println(port);
-
         RestClient client = RestClient.builder(new HttpHost(hostName, port, "http")).build();
         ElasticsearchTransport transport = new RestClientTransport(client, new JacksonJsonpMapper());
         return new ElasticsearchClient(transport);
