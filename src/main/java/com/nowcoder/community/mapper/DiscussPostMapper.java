@@ -46,4 +46,20 @@ public interface DiscussPostMapper {
      * @return 1-success; 0-fail
      */
     int updateCommentCount(int id, int commentCount);
+
+    /**
+     * 更新帖子的类型
+     * @param id Post's id
+     * @param type 0-普通; 1-置顶
+     * @return 1-success; 0-fail
+     */
+    int updateType(int id, int type);
+
+    /**
+     * 更新帖子的状态
+     * @param id Post's id
+     * @param status 0-正常; 1-精华; 2-拉黑
+     * @return 1-success; 0-fail
+     */
+    int updateStatus(int id, int status);
 }

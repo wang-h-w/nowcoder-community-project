@@ -33,6 +33,15 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
         }
     }
 
+    public void updateDiscussPost(DiscussPost post) {
+        try {
+            client.delete(d -> d.index("discusspost").id(String.valueOf(post.getId())));
+            client.create(c -> c.index("discusspost").id(String.valueOf(post.getId())).document(post));
+        } catch (IOException e) {
+            throw new RuntimeException("Elasticsearch文档更新索引失败！");
+        }
+    }
+
     @Override
     public void deleteDiscussPost(int id) {
         try {
@@ -41,6 +50,8 @@ public class ElasticsearchServiceImpl implements ElasticsearchService {
             throw new RuntimeException("Elasticsearch删除文档失败！");
         }
     }
+
+
 
     @Override
     public ElasticsearchResult searchDiscussPost(String keyword, int current, int limit) {

@@ -59,6 +59,15 @@ public class SecurityConfig implements CommunityConstant {
                         AUTHORITY_USER,
                         AUTHORITY_ADMIN,
                         AUTHORITY_MODERATOR)
+                .requestMatchers(
+                        "/discuss/top",
+                        "/discuss/wonderful")
+                .hasAnyAuthority(
+                        AUTHORITY_MODERATOR)
+                .requestMatchers(
+                        "/discuss/delete")
+                .hasAnyAuthority(
+                        AUTHORITY_ADMIN)
                 .anyRequest().permitAll() // 除了上述指明的请求外，其余都允许
                 .and().csrf().disable(); // 关闭CSRF验证
 

@@ -13,6 +13,12 @@ public interface ElasticsearchService {
     void saveDiscussPost(DiscussPost post);
 
     /**
+     * 业务：修改索引中的一个帖子
+     * @param post Discuss post
+     */
+    void updateDiscussPost(DiscussPost post);
+
+    /**
      * 业务：从索引中删除一个帖子
      * @param id Discuss post's id
      */

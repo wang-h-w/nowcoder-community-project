@@ -78,6 +78,16 @@ public interface CommunityConstant {
     String TOPIC_PUBLISH = "publish";
 
     /**
+     * Kafka主题：修改帖子
+     */
+    String TOPIC_MODIFY = "modify";
+
+    /**
+     * Kafka主题：删帖
+     */
+    String TOPIC_DELETE = "delete";
+
+    /**
      * 系统的用户ID
      */
     int SYSTEM_USER_ID = 1;
